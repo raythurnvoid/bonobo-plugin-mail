@@ -39,9 +39,10 @@ Without the grant the page says "Mail cannot read /emails" and lists nothing.
   scope.
 - Drafts are private in the page, but other plugin pages in the same installation can read the
   store. Do not keep secrets in a draft.
-- The Files read API cannot read only the start of a file: it refuses a file bigger than the
-  limit. So a row reads its whole file, and an email file over 128 KB cannot be opened. A fix
-  needs a partial read in the Files API, or a small index file that the Gmail plugin writes.
+- The Files read API cannot read only the start of a file. So a list row reads its whole file,
+  and a long email makes the list slower. A fix needs a partial read in the Files API, or a small
+  index file that the Gmail plugin writes.
+- An email file over 900 KB is not stored as text, so it cannot be opened here.
 - Emails from the same day are sorted by file name, not by time, because the file name has no time.
 - The last save wins. If the member and the agent save the same draft at the same moment, one
   change is lost.

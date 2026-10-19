@@ -27,7 +27,7 @@ export type Email = {
 /**
  * One row in the message list. `subject` and `day` come from the file path, so a row is useful
  * before its file is read. `headers` is null until the file was read, and stays null when the read
- * failed (for example a file over the 128 KB read limit).
+ * failed.
  */
 export type EmailRow = {
 	path: string;
@@ -106,8 +106,7 @@ export function parse_email_markdown(path: string, content: string): Email {
 }
 
 /**
- * Read one email file. The read door has no partial read: it refuses a file over 128 KB instead
- * of cutting it. So a list row reads the whole file too.
+ * Read one email file. The read door has no partial read, so a list row reads the whole file too.
  */
 export async function read_email(client: BonoboClient, path: string) {
 	const answer = await fetch_json_with_429_retry(client, "/api/v1/files/read", { path });

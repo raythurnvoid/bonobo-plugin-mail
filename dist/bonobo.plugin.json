@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"name": "mail",
 	"displayName": "Mail",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "An email client for the emails the Gmail plugin saves to Files. Read your mail, write drafts, and let the chat agent help with both.",
 	"compatibility": {
 		"bonoboPluginRuntime": "1"
@@ -109,8 +109,8 @@
 		},
 		{
 			"path": "dist/frontend/assets/index.js",
-			"sha256": "sha256:eb8d56e0515db9e9305a89cae38f66b2d77c56fa71d713b32fbb559bfed125e9",
-			"bytes": 272810,
+			"sha256": "sha256:2b6dab623ed01185bacfe87855fc631166f4b975fa63c9525d2dfd23cfc66568",
+			"bytes": 272754,
 			"contentType": "application/javascript"
 		},
 		{

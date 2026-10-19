@@ -6859,8 +6859,7 @@ function parse_email_markdown(path, content) {
 	};
 }
 /**
- * Read one email file. The read door has no partial read: it refuses a file over 128 KB instead
- * of cutting it. So a list row reads the whole file too.
+ * Read one email file. The read door has no partial read, so a list row reads the whole file too.
  */
 async function read_email(client, path) {
 	const answer = await fetch_json_with_429_retry(client, "/api/v1/files/read", { path });
