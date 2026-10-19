@@ -180,7 +180,7 @@ export async function list_accounts(client: BonoboClient) {
 	// to fix it.
 	if (answer.status === 403) {
 		throw new Error(
-			`Mail cannot read ${MAIL_ROOT}. Open the Service accounts page, choose Manage access on the Mail row, and add "Can view" on ${MAIL_ROOT}.`,
+			`Mail cannot read ${MAIL_ROOT}. Open the Service accounts page, choose Manage grants on the Mail row, and add "Can view" on ${MAIL_ROOT}.`,
 		);
 	}
 	if (answer.status !== 200 || answer.body === null || !("items" in answer.body) || answer.body.items === undefined) {

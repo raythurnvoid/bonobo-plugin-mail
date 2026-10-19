@@ -8,12 +8,15 @@ This is a proof of concept.
 ## Setup
 
 1. Install the Gmail plugin and let it sync. It writes the emails to `/emails/<account>/`.
-2. Install Mail in the same workspace.
-3. Give Mail access to the emails. Install creates a Mail service account with no access. Open the
-   **Service accounts** page, choose **Manage access** on the **Mail** row, pick **File or folder**,
-   enter `/emails`, choose **Can view**, and press **Save grant**.
+2. Install Mail in the same workspace, and give it access to the emails. Install creates a Mail
+   service account with no access. In the install dialog, under **Folders this plugin can use**,
+   pick **File or folder**, enter `/emails`, choose **Can view**, and press **Add reviewed grant**
+   before you accept.
+3. If you skipped that, add the grant later. Open the **Service accounts** page, choose **Manage
+   grants** on the **Mail** row, pick **File or folder**, enter `/emails`, choose **Can view**, and
+   press **Save grant**.
 
-Without step 3 the page says "Mail cannot read /emails" and lists nothing.
+Without the grant the page says "Mail cannot read /emails" and lists nothing.
 
 ## What it does
 
