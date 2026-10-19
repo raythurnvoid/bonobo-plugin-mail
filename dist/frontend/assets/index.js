@@ -6921,6 +6921,10 @@ async function list_accounts(client) {
 		limit: 100,
 	});
 	if (answer.status === 404) return [];
+	if (answer.status === 403)
+		throw new Error(
+			`Mail cannot read ${MAIL_ROOT}. Open the Service accounts page, choose Manage access on the Mail row, and add "Can view" on ${MAIL_ROOT}.`,
+		);
 	if (answer.status !== 200 || answer.body === null || !("items" in answer.body) || answer.body.items === void 0) {
 		const message = answer.body && "message" in answer.body ? answer.body.message : `HTTP ${answer.status}`;
 		throw new Error(`Failed to list ${MAIL_ROOT}: ${message}`);
