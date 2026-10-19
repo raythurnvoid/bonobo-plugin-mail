@@ -1,0 +1,123 @@
+{
+	"schemaVersion": 1,
+	"name": "mail",
+	"displayName": "Mail",
+	"version": "0.1.0",
+	"description": "An email client for the emails the Gmail plugin saves to Files. Read your mail, write drafts, and let the chat agent help with both.",
+	"compatibility": {
+		"bonoboPluginRuntime": "1"
+	},
+	"events": [],
+	"pages": [
+		{
+			"id": "mail",
+			"title": "Mail",
+			"entry": "dist/frontend/index.html",
+			"navItem": {
+				"label": "Mail",
+				"icon": "mail"
+			},
+			"agent": {
+				"tools": [
+					{
+						"name": "get_view",
+						"description": "Show what the member sees in Mail right now: the mailbox folder, the open email or draft, and the newest emails in the list.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {},
+							"additionalProperties": false
+						}
+					},
+					{
+						"name": "open_email",
+						"description": "Open one email in the Mail page and return its headers and text. Use a path from get_view or from the Files tools, for example /emails/me-example-com/2026/10/18-hello-18f2a.md.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {
+								"path": { "type": "string", "description": "The email's Files path." }
+							},
+							"required": ["path"],
+							"additionalProperties": false
+						}
+					},
+					{
+						"name": "list_drafts",
+						"description": "List the member's drafts in Mail, newest first.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {},
+							"additionalProperties": false
+						}
+					},
+					{
+						"name": "create_draft",
+						"description": "Write a new draft and open it in the Mail page so the member can review it. Drafts are not sent. To reply, pass the email's path as replyToPath.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {
+								"to": { "type": "array", "items": { "type": "string" }, "description": "Recipient addresses." },
+								"cc": { "type": "array", "items": { "type": "string" } },
+								"subject": { "type": "string" },
+								"body": { "type": "string", "description": "Plain text body." },
+								"replyToPath": { "type": "string", "description": "Files path of the email this draft answers." }
+							},
+							"required": ["to", "subject", "body"],
+							"additionalProperties": false
+						}
+					},
+					{
+						"name": "update_draft",
+						"description": "Change a draft and open it in the Mail page. Fields you leave out stay the same.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {
+								"draftId": { "type": "string" },
+								"to": { "type": "array", "items": { "type": "string" } },
+								"cc": { "type": "array", "items": { "type": "string" } },
+								"subject": { "type": "string" },
+								"body": { "type": "string" }
+							},
+							"required": ["draftId"],
+							"additionalProperties": false
+						}
+					},
+					{
+						"name": "delete_draft",
+						"description": "Delete one of the member's drafts.",
+						"inputSchema": {
+							"type": "object",
+							"properties": {
+								"draftId": { "type": "string" }
+							},
+							"required": ["draftId"],
+							"additionalProperties": false
+						}
+					}
+				]
+			}
+		}
+	],
+	"capabilities": ["workspace.files.read", "plugin.data.read", "plugin.data.user-write", "agent.page-tools"],
+	"userWritableCollections": ["drafts"],
+	"outboundOrigins": [],
+	"files": [
+		{
+			"path": "dist/frontend/index.html",
+			"sha256": "sha256:89352e4eea31633049c5563538182c19f39557d0767041e2260e42f66202ae3d",
+			"bytes": 357,
+			"contentType": "text/html"
+		},
+		{
+			"path": "dist/frontend/assets/index.js",
+			"sha256": "sha256:62e0d57266c50030ad2f820e3286e9a0ca7bc188246df1df2f811d77ec7eacd5",
+			"bytes": 272615,
+			"contentType": "application/javascript"
+		},
+		{
+			"path": "dist/frontend/assets/index.css",
+			"sha256": "sha256:882f9c8c9bbb7c889622cf62f8b472a0f632b6c5af2edfd823bb212957fda647",
+			"bytes": 6019,
+			"contentType": "text/css"
+		}
+	]
+}
